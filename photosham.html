@@ -1,0 +1,37 @@
+<body>
+  <div class="bigBox">
+    <div class="mediumBox" style="display: inline-flex;">
+      <div>
+        <h3>Use the sliders to change expansion size, xrange, yrange, alpha, and current frame</h3>
+        <div style="display: inline-flex">
+          <input type="range" min="1" max="4" value="2" class="slider" id="enlarge-size" oninput="enlarge()">
+          <input type="range" min="0" max="64" value="0" class="slider" id="x-slider" oninput="updatexrange()">
+          <input type="range" min="0" max="64" value="0" class="slider" id="y-slider" oninput="updateyrange()">
+          <input type="range" min="0" max="255" value="100" class="slider" id="alpha" oninput="updateAlpha()">
+          <input type="range" min="0" max="0" value="0" class="slider" id="this_frame" oninput="updateframe()">
+        </div>
+        <div>Text: <input id="input-text" type="text" style="width: 200px;"></div>
+        <div>Hex Color: <input id="input-color" type="text" style="width: 200px;"></div>
+        <div style="display: inline-flex">
+          <div><button onclick="update()">Submit</button></div>
+          <div><button onclick="inspect()">Inspect</button></div>
+          <div><button onclick="rectangle()">Fill</button></div>
+          <div><button onclick="enlarge()">Enlarge</button></div>
+          <div><button onclick="copyFrame()">Copy Frame</button></div>
+          <div><button onclick="addFrame()">Add Frame</button></div>
+        </div>
+      </div>
+      <div style="padding-left: 12px;"><h3>History</h3><div id="history" style="width: 225px; height: 225px; overflow-y: scroll;"></div></div>
+    </div>
+    <div class="mediumBox">
+      <canvas height="640px" width="640px" id="cv"></canvas>
+    </div>
+    <div class="mediumBox">
+      <button onclick="save()"><a id="save">Save</a></button>
+    </div>
+    <div class="mediumBox">
+      <input id="input" type="file">Open</input>
+    </div>
+    <script src="photosham.js"></script>
+  </div>
+</body>
