@@ -23,7 +23,7 @@ tile_size = 10
 var alpha
 
 class Tile {
-	constructor(coord, props) {
+  constructor(coord, props) {
     this.text = props[0]
     if (props[1]['text'] == 'primary') {
       this.primary = props[1]['color']
@@ -39,24 +39,24 @@ class Tile {
     this._temp = []
     this.x = coord[0]
     this.y = coord[1]
-	}
+  }
 
-	drawButton() {
-		ctx.fillStyle = "black"
-		ctx.strokeStyle = "black"
-		ctx.strokeRect(this.x * tile_size, this.y * tile_size, tile_size, tile_size)
-		if(this.primary) {
-			ctx.fillStyle = this.primary
-			ctx.fillRect(this.x * tile_size, this.y * tile_size, tile_size, tile_size)
-		} else if (this.secondary) {
+  drawButton() {
+    ctx.fillStyle = "black"
+    ctx.strokeStyle = "black"
+    ctx.strokeRect(this.x * tile_size, this.y * tile_size, tile_size, tile_size)
+    if(this.primary) {
+      ctx.fillStyle = this.primary
+      ctx.fillRect(this.x * tile_size, this.y * tile_size, tile_size, tile_size)
+    } else if (this.secondary) {
       ctx.fillStyle = this.secondary + alpha
       ctx.fillRect(this.x * tile_size, this.y * tile_size, tile_size, tile_size)
     }
-	}
+  }
 
-	checkForPress(clickx, clicky) {
-		if(clickx >= this.x * tile_size - x_range * tile_size && clickx <= (this.x + 1) * tile_size - x_range * tile_size && clicky >= this.y * tile_size - y_range * tile_size && clicky <= (this.y + 1) * tile_size - y_range * tile_size) {
-			if(clickmode == 'update') {
+  checkForPress(clickx, clicky) {
+    if(clickx >= this.x * tile_size - x_range * tile_size && clickx <= (this.x + 1) * tile_size - x_range * tile_size && clicky >= this.y * tile_size - y_range * tile_size && clicky <= (this.y + 1) * tile_size - y_range * tile_size) {
+      if(clickmode == 'update') {
         this.text = currentText
         this.primary = currentColor
       } else if (clickmode == 'inspect') {
@@ -66,8 +66,8 @@ class Tile {
         this.primary = '#34ad4a'
         return [this.x, this.y]
       }
-		}
-	}
+    }
+  }
   
   updateColor() {
     this.primary = currentColor
@@ -83,11 +83,11 @@ class Tile {
 }
 
 function drawBoxes() {
-	for(i = x_range; i < width; i++) {
-		for(j = y_range; j < height; j++) {
-			animation[this_frame][i][j].drawButton()
-		}
-	}
+  for(i = x_range; i < width; i++) {
+    for(j = y_range; j < height; j++) {
+      animation[this_frame][i][j].drawButton()
+    }
+  }
 }
 
 function createCanvas() {
@@ -121,7 +121,7 @@ function getTileProps(frame_stuff) {
 }
 
 function save() {
-	var a = document.getElementById("save");
+  var a = document.getElementById("save");
   
   basic_animation = getTileProps(animation)
   
@@ -352,11 +352,11 @@ storedClick = []
 clicked = false
 window.onload = function() {
   var elm = document.getElementById("input")
-			elm.addEventListener("change", readFile)
+      elm.addEventListener("change", readFile)
       
-	document.getElementById("cv").addEventListener("click", function(event) {
-		var x = event.offsetX,
-			y = event.offsetY
+  document.getElementById("cv").addEventListener("click", function(event) {
+    var x = event.offsetX,
+      y = event.offsetY
       
     i = Math.floor(x / tile_size) + Math.floor(x_range/tile_size)
     j = Math.floor(y / tile_size) + Math.floor(y_range/tile_size)
@@ -371,27 +371,27 @@ window.onload = function() {
         storedClick.push(rectLocs)
       }
     }
-	})
+  })
 
-	document.getElementById("cv").addEventListener("mousedown", function(event) {
-		clicked = true
-	})
-	document.getElementById("cv").addEventListener("mouseup", function(event) {
-		clicked = false
-	})
-	document.getElementById("cv").addEventListener("mousemove", function(event) {
-		if(clicked == true) {
-			var domx = event.offsetX,
-				domy = event.offsetY
+  document.getElementById("cv").addEventListener("mousedown", function(event) {
+    clicked = true
+  })
+  document.getElementById("cv").addEventListener("mouseup", function(event) {
+    clicked = false
+  })
+  document.getElementById("cv").addEventListener("mousemove", function(event) {
+    if(clicked == true) {
+      var domx = event.offsetX,
+        domy = event.offsetY
         
       i = Math.floor(domx / tile_size) + Math.floor(x_range/tile_size)
       j = Math.floor(domy / tile_size) + Math.floor(y_range/tile_size)
       
-			animation[this_frame][i][j].checkForPress(domx, domy)
-		}
-	})
+      animation[this_frame][i][j].checkForPress(domx, domy)
+    }
+  })
 
-	canvas = document.getElementById("cv")
+  canvas = document.getElementById("cv")
 
   animation = [[]]
   tiles = []
@@ -409,5 +409,5 @@ window.onload = function() {
     alpha = '0' + alpha
   }
   
-	main()
+  main()
 }
